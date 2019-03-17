@@ -1,5 +1,6 @@
 <template>
     <div>
+        <NavDefault :test="test"></NavDefault>
         <p>
             <router-link :to="{name: 'home'}">Home</router-link> |
             <router-link :to="{name: 'list'}">List</router-link> |
@@ -15,7 +16,16 @@
 </template>
 
 <script>
+import NavDefault from '.././components/home/NavDefault.vue';
 export default {
-    
+    components: {
+        NavDefault,
+
+    },
+    data() {
+        return {
+            test: 111,
+        }
+    }
 }
 </script>

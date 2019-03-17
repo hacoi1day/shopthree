@@ -1888,7 +1888,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['userLogin', 'showInfo', 'test'],
+  data: function data() {
+    return {};
+  },
+  beforeCreate: function beforeCreate() {},
+  created: function created() {},
+  methods: {
+    show: function show() {// console.log(this.userLogin.email);
+    }
+  }
+});
 
 /***/ }),
 
@@ -2043,6 +2062,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_home_NavDefault_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! .././components/home/NavDefault.vue */ "./resources/js/components/home/NavDefault.vue");
 //
 //
 //
@@ -2059,7 +2079,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    NavDefault: _components_home_NavDefault_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      test: 111
+    };
+  }
+});
 
 /***/ }),
 
@@ -2822,7 +2853,14 @@ __webpack_require__.r(__webpack_exports__);
       error: {
         email: '',
         password: ''
-      }
+      },
+      userLogin: {
+        email: '',
+        name: '',
+        diachi: '',
+        ngaysinh: ''
+      },
+      showInfo: false
     };
   },
   methods: {
@@ -2839,6 +2877,12 @@ __webpack_require__.r(__webpack_exports__);
 
         if (response.data.email) {
           _this.showSuccess = true;
+          _this.userLogin.email = response.data.email;
+          _this.userLogin.name = response.data.name;
+          _this.userLogin.diachi = response.data.diachi;
+          _this.userLogin.ngaysinh = response.data.ngaysinh; // console.log(this.userLogin);
+
+          _this.showInfo = true;
         } else {
           alert("Tài khoản hoặc mật khẩu không chính xác");
           _this.showFormLogin = true;
@@ -2855,8 +2899,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.user.password = '';
         _this.showFormLogin = true;
         _this.showLoading = false;
-        _this.showErrors = true;
-        console.log(error.response.data.errors);
+        _this.showErrors = true; // console.log(error.response.data.errors);
 
         if (error.response.data.errors.email) {
           _this.error.email = error.response.data.errors.email[0];
@@ -48176,44 +48219,14 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _c("div", { staticClass: "float-xs-right" }, [
-                  _c("ul", { staticClass: "navbar-nav mr-auto mt-2 mt-lg-0" }, [
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        { staticClass: "nav-link" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "router-link",
-                              attrs: { to: { name: "login" } }
-                            },
-                            [_vm._v("Đăng nhập")]
-                          )
-                        ],
-                        1
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        { staticClass: "nav-link" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "router-link",
-                              attrs: { to: { name: "register" } }
-                            },
-                            [_vm._v("Đăng ký")]
-                          )
-                        ],
-                        1
-                      )
+                _c("ul", { staticClass: "navbar-nav mr-auto mt-2 mt-lg-0" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item active" }, [
+                    _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+                      _vm._v("Sản phẩm nổi bật " + _vm._s(_vm.test))
                     ])
                   ])
                 ])
@@ -48250,23 +48263,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "navbar-nav mr-auto mt-2 mt-lg-0" }, [
-      _c("li", { staticClass: "nav-item active" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-          _vm._v("Top mua nhiều")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item active" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-          _vm._v("Danh mục sản phẩm")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item active" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-          _vm._v("Sản phẩm nổi bật")
-        ])
+    return _c("li", { staticClass: "nav-item active" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+        _vm._v("Top mua nhiều")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item active" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+        _vm._v("Danh mục sản phẩm")
       ])
     ])
   }
@@ -48709,40 +48718,46 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "p",
-      [
-        _c("router-link", { attrs: { to: { name: "home" } } }, [
-          _vm._v("Home")
-        ]),
-        _vm._v(" |\n        "),
-        _c("router-link", { attrs: { to: { name: "list" } } }, [
-          _vm._v("List")
-        ]),
-        _vm._v(" |\n        "),
-        _c("router-link", { attrs: { to: { name: "login" } } }, [
-          _vm._v("Login")
-        ]),
-        _vm._v(" |\n        "),
-        _c("router-link", { attrs: { to: { name: "hoso" } } }, [
-          _vm._v("Hồ sơ")
-        ]),
-        _vm._v(" |\n        "),
-        _c("router-link", { attrs: { to: { name: "diachi" } } }, [
-          _vm._v("Địa chỉ")
-        ]),
-        _vm._v(" |\n        "),
-        _c("router-link", { attrs: { to: { name: "doimatkhau" } } }, [
-          _vm._v("Đổi mật khẩu")
-        ]),
-        _vm._v(" |\n    ")
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", [_c("router-view")], 1)
-  ])
+  return _c(
+    "div",
+    [
+      _c("NavDefault", { attrs: { test: _vm.test } }),
+      _vm._v(" "),
+      _c(
+        "p",
+        [
+          _c("router-link", { attrs: { to: { name: "home" } } }, [
+            _vm._v("Home")
+          ]),
+          _vm._v(" |\n        "),
+          _c("router-link", { attrs: { to: { name: "list" } } }, [
+            _vm._v("List")
+          ]),
+          _vm._v(" |\n        "),
+          _c("router-link", { attrs: { to: { name: "login" } } }, [
+            _vm._v("Login")
+          ]),
+          _vm._v(" |\n        "),
+          _c("router-link", { attrs: { to: { name: "hoso" } } }, [
+            _vm._v("Hồ sơ")
+          ]),
+          _vm._v(" |\n        "),
+          _c("router-link", { attrs: { to: { name: "diachi" } } }, [
+            _vm._v("Địa chỉ")
+          ]),
+          _vm._v(" |\n        "),
+          _c("router-link", { attrs: { to: { name: "doimatkhau" } } }, [
+            _vm._v("Đổi mật khẩu")
+          ]),
+          _vm._v(" |\n    ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", [_c("router-view")], 1)
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -50222,7 +50237,9 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("NavDefault"),
+      _c("NavDefault", {
+        attrs: { userLogin: _vm.userLogin, showInfo: _vm.showInfo }
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "my-3" }, [
         _c("div", { staticClass: "container" }, [
@@ -66352,14 +66369,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************!*\
   !*** ./resources/js/views/App.vue ***!
   \************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_vue_vue_type_template_id_91ac6b5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=template&id=91ac6b5c& */ "./resources/js/views/App.vue?vue&type=template&id=91ac6b5c&");
 /* harmony import */ var _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js& */ "./resources/js/views/App.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -66389,7 +66407,7 @@ component.options.__file = "resources/js/views/App.vue"
 /*!*************************************************************!*\
   !*** ./resources/js/views/App.vue?vue&type=script&lang=js& ***!
   \*************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

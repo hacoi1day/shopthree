@@ -1,6 +1,6 @@
 <template>
     <div>
-        <NavDefault></NavDefault>
+        <NavDefault :userLogin="userLogin" :showInfo="showInfo"></NavDefault>
         
         <div class="my-3">
             <div class="container">
@@ -69,6 +69,13 @@ export default {
                 email: '',
                 password: '',
             },
+            userLogin: {
+                email: '',
+                name: '',
+                diachi: '',
+                ngaysinh: '',
+            },
+            showInfo: false,
 
         };
     },
@@ -85,6 +92,12 @@ export default {
                 // console.log(response.data.email);
                 if(response.data.email) {
                     this.showSuccess = true;
+                    this.userLogin.email = response.data.email;
+                    this.userLogin.name = response.data.name;
+                    this.userLogin.diachi = response.data.diachi;
+                    this.userLogin.ngaysinh = response.data.ngaysinh;
+                    // console.log(this.userLogin);
+                    this.showInfo = true;
                 } else {
                     alert("Tài khoản hoặc mật khẩu không chính xác");
                     this.showFormLogin = true;
@@ -102,7 +115,7 @@ export default {
                 this.showFormLogin = true;
                 this.showLoading = false;
                 this.showErrors = true;
-                console.log(error.response.data.errors);
+                // console.log(error.response.data.errors);
                 if(error.response.data.errors.email) {
                     this.error.email = error.response.data.errors.email[0];
                 }

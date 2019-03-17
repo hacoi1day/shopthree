@@ -17,11 +17,11 @@
                                 <a class="nav-link" href="#">Danh mục sản phẩm</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Sản phẩm nổi bật</a>
+                                <a class="nav-link" href="#">Sản phẩm nổi bật {{test}}</a>
                             </li>
                         </ul>
-                        <div class="float-xs-right">
-                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <!-- <div class="float-xs-right">
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0" v-show="!showInfo">
                                 <li class="nav-item">
                                     <a class="nav-link"><router-link class="router-link" :to="{name: 'login'}">Đăng nhập</router-link></a>
                                 </li>
@@ -29,7 +29,15 @@
                                     <a class="nav-link"><router-link class="router-link" :to="{name: 'register'}">Đăng ký</router-link></a>
                                 </li>
                             </ul>
-                        </div>
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0" v-show="showInfo">
+                                <li class="nav-item">
+                                    <a class="nav-link"><router-link class="router-link" :to="{name: 'login'}">Xin chào, {{userLogin.name}}</router-link></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"><router-link class="router-link" :to="{name: 'login'}">Thoát</router-link></a>
+                                </li>
+                            </ul>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -40,7 +48,24 @@
 
 <script>
 export default {
-    
+    props: ['userLogin', 'showInfo', 'test'],
+
+    data() {
+        return {
+            
+        }
+    },
+    beforeCreate() {
+
+    },
+    created() {
+
+    },
+    methods: {
+        show() {
+            // console.log(this.userLogin.email);
+        }
+    }
 }
 </script>
 
