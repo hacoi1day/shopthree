@@ -1,8 +1,5 @@
 <template>
     <div>
-        <!-- Navbar -->
-        <NavDefault></NavDefault>
-
         <!-- Slide -->
         <Slide></Slide>
 
@@ -259,20 +256,14 @@
         </div>
         <!-- end:content -->
 
-        <!-- Footer -->
-        <Footer></Footer>
     </div>
 </template>
 
 <script>
-import NavDefault from '.././components/home/NavDefault.vue';
 import Slide from '.././components/home/Slide.vue';
-import Footer from '.././components/Footer.vue';
 export default {
     components: {
-        NavDefault,
         Slide,
-        Footer,
     }
 }
 </script>

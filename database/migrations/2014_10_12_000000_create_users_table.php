@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('sodienthoai');
             $table->boolean('gioitinh');
             $table->tinyInteger('loainguoidung');
+            $table->text('avatar');
+            $table->boolean('coshop');
             $table->rememberToken();
             $table->timestamps();
         });

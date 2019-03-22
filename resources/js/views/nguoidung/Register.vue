@@ -1,7 +1,5 @@
 <template>
     <div>
-        <NavDefault></NavDefault>
-
         <div class="my-3">
             <div class="container">
                 <div class="row">
@@ -83,11 +81,9 @@
 </template>
 
 <script>
-import NavDefault from '../.././components/home/NavDefault.vue';
-
 export default {
     components: {
-        NavDefault,
+        
     },
     data() {
         return {

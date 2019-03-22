@@ -77,37 +77,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .foot0 {
-        ul {
-            list-style-type: none;
-            li.tt {
-                text-transform: uppercase;
-                font-size: 17px;
-                font-weight: bold;
-            }
-            li {
-                font-size: 15px;
-            }
-        }
-    }
-    .foot1 {
-        .fo1 {
-            font-size: 15px;
-            color: gray;
-            // float: left;
-        }
-        .change-language {
-            // float: right;
-            color: gray;
-            span {
-                float: left;
-            }
+    .footer {
+        padding-top: 100px;
+        .foot0 {
             ul {
                 list-style-type: none;
-                float: left;
+                li.tt {
+                    text-transform: uppercase;
+                    font-size: 17px;
+                    font-weight: bold;
+                }
                 li {
+                    font-size: 15px;
+                }
+            }
+        }
+        .foot1 {
+            .fo1 {
+                font-size: 15px;
+                color: gray;
+                // float: left;
+            }
+            .change-language {
+                // float: right;
+                color: gray;
+                span {
                     float: left;
-                    margin-right: 5px;
+                }
+                ul {
+                    list-style-type: none;
+                    float: left;
+                    li {
+                        float: left;
+                        margin-right: 5px;
+                    }
                 }
             }
         }

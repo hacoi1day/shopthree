@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <NavDefault :userLogin="userLogin" :showInfo="showInfo"></NavDefault>
-        
+    <div>        
         <div class="my-3">
             <div class="container">
                 <div class="row">
@@ -49,10 +47,17 @@
 </template>
 
 <script>
-import NavDefault from '../.././components/home/NavDefault.vue';
 export default {
     components: {
-        NavDefault,
+
+    },
+    beforeCreate() {
+        if (this.$session.has('userData')) {
+            this.$router.push('/');
+        }
+    },
+    created() {
+
     },
     data() {
         return {
@@ -70,13 +75,14 @@ export default {
                 password: '',
             },
             userLogin: {
+                id: 0,
                 email: '',
                 name: '',
                 diachi: '',
                 ngaysinh: '',
+                coshop: 0,
             },
             showInfo: false,
-
         };
     },
     methods: {
@@ -88,16 +94,22 @@ export default {
                 password: this.user.password
             })
             .then(response => {
-                console.log(response.data);
-                // console.log(response.data.email);
+                // console.log(response.data);
                 if(response.data.email) {
                     this.showSuccess = true;
+                    this.userLogin.id = response.data.id;
                     this.userLogin.email = response.data.email;
                     this.userLogin.name = response.data.name;
                     this.userLogin.diachi = response.data.diachi;
                     this.userLogin.ngaysinh = response.data.ngaysinh;
+                    this.userLogin.coshop = response.data.coshop;
                     // console.log(this.userLogin);
                     this.showInfo = true;
+
+                    // lưu session
+                    this.$session.start();
+                    this.$session.set('userData', this.userLogin);
+
                 } else {
                     alert("Tài khoản hoặc mật khẩu không chính xác");
                     this.showFormLogin = true;
@@ -105,6 +117,7 @@ export default {
                     this.user.password = '';
                 }
                 this.showLoading = false;
+                this.$emit('showData', this.userLogin);
             })
             .catch(error => {
                 this.error = {
@@ -115,7 +128,6 @@ export default {
                 this.showFormLogin = true;
                 this.showLoading = false;
                 this.showErrors = true;
-                // console.log(error.response.data.errors);
                 if(error.response.data.errors.email) {
                     this.error.email = error.response.data.errors.email[0];
                 }

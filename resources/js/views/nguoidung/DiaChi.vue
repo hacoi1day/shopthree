@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <NavUser></NavUser>
+    <div class="my-3">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
@@ -68,11 +67,9 @@
 </template>
 
 <script>
-import NavUser from '../.././components/nguoidung/NavUser.vue';
 import LeftNav from '../.././components/nguoidung/LeftNav.vue';
 export default {
     components: {
-        NavUser,
         LeftNav
 
     },

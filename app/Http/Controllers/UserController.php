@@ -51,6 +51,8 @@ class UserController extends Controller
         $user->sodienthoai = $request->sodienthoai;
         $user->gioitinh = $request->gioitinh;
         $user->loainguoidung = 2;
+        $user->avatar = "";
+        $user->coshop = false;
         $user->save();
         // trả về success để thông báo đăng ký thành công
         return 'success';
@@ -82,11 +84,19 @@ class UserController extends Controller
         // kiểm tra đăng nhập
         if(Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = [
+                'id' => Auth::user()->id,
                 'email' => Auth::user()->email,
                 'name' => Auth::user()->name,
                 'diachi' => Auth::user()->diachi,
                 'ngaysinh' => Auth::user()->ngaysinh,
+                'coshop' => Auth::user()->coshop,
             ];
+            // lưu session
+            // Session::put('userData', $user);
+            // Session::put('clicked_close_popup_button', true);
+            // echo Session::get('userData');
+
+
             // trả về client thông tin người dùng
             return $user;
         } else {

@@ -25,3 +25,9 @@ Route::post('login', [
     'as' => 'login',
     'uses' => 'UserController@postLoginAPI'
 ]);
+
+Route::group(['prefix' => 'shop'], function () {
+    Route::get('get-data', 'ShopController@getData');
+    Route::post('post-data', 'ShopController@postData');
+    
+});
