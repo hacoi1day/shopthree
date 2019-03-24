@@ -68,7 +68,7 @@ export default {
         logout() {
             this.$session.clear();
             this.$router.push('/');
-            // this.$router.reload();
+            location.reload();
         }
     }
 }

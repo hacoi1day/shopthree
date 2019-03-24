@@ -4,18 +4,17 @@
             <div class="row">
                 <div class="col-3">
                     <ul class="list-group">
-                        <li class="list-group-item"><router-link  :to="{name: 'tongquan'}">Tổng quan</router-link></li>
-                        <li class="list-group-item"><router-link  :to="{name: 'danhsachsanpham'}">Danh sách sản phẩm</router-link></li>
-                        <li class="list-group-item"><router-link  :to="{name: 'danhmuc'}">Quản lý danh mục</router-link></li>
-                        <li class="list-group-item"> Đơn mua
+                        <li class="list-group-item"><i class="icons fas fa-bell"></i><router-link class="router-link" :to="{name: 'tongquan'}">Tổng quan</router-link></li>
+                        <li class="list-group-item"><i class="icons fas fa-bars"></i><router-link class="router-link"  :to="{name: 'danhsachsanpham'}">Danh sách sản phẩm</router-link></li>
+                        <li class="list-group-item"><i class="icons fas fa-bookmark"></i><router-link class="router-link"  :to="{name: 'danhmuc'}">Quản lý danh mục</router-link></li>
+                        <li class="list-group-item"><i class="icons fas fa-shopping-cart"></i> Đơn mua
                             <ul>
-                                <li>Chưa xác nhận</li>
-                                <li>Đang xử lý</li>
-                                <li>Đang vận chuyển</li>
-                                <li>Hoàn thành</li>
+                                <li><i class="icons fas fa-question"></i><router-link class="router-link" :to="{name: ''}">Chưa xác nhận</router-link></li>
+                                <li><i class="icons far fa-clipboard"></i><router-link class="router-link" :to="{name: ''}">Đang xử lý</router-link></li>
+                                <li><i class="icons far fa-clock"></i><router-link class="router-link" :to="{name: ''}">Vận chuyển</router-link></li>
+                                <li><i class="icons fas fa-check"></i><router-link class="router-link" :to="{name: ''}">Hoàn thành</router-link></li>
                             </ul>
                         </li>
-                        <li class="list-group-item">Đơn mua</li>
                     </ul>
                 </div>
                 <div class="col-9">
@@ -71,6 +70,21 @@ export default {
     .content {
         ul {
             padding-left: 30px;
+            list-style-type: none;
+            li {
+                color: gray;
+                .icons {
+                    margin-right: 10px;
+                }
+                .router-link {
+                    color: rgb(20, 41, 107);
+                    text-decoration: none;
+                    
+                }
+                .router-link:hover {
+                    font-weight: bold;
+                }
+            }
         }
     }
 </style>

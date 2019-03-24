@@ -15,28 +15,57 @@
                     <hr>
                 </div>
                 <div class="khoinoidung">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <span class="tendanhmuc">Điện thoại</span>
-                            <span class="sua"><i class="fas fa-pen"></i></span>
-                            <span class="xoa"><i class="fas fa-trash"></i></span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="tendanhmuc">Máy tính bảng</span>
-                            <span class="sua"><i class="fas fa-pen"></i></span>
-                            <span class="xoa"><i class="fas fa-trash"></i></span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="tendanhmuc">PC</span>
-                            <span class="sua"><i class="fas fa-pen"></i></span>
-                            <span class="xoa"><i class="fas fa-trash"></i></span>
-                        </li>
-                        <li class="list-group-item">
-                            <span class="tendanhmuc">Laptop</span>
-                            <span class="sua"><i class="fas fa-pen"></i></span>
-                            <span class="xoa"><i class="fas fa-trash"></i></span>
-                        </li>
-                    </ul>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên danh mục</th>
+                                <th scope="col">Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- begin:_1danhmuc -->
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><b>Điện thoại</b></td>
+                                <td>
+                                    <span class="sua"><i class="fas fa-pen"></i></span>
+                                    <span class="xoa"><i class="fas fa-trash"></i></span>
+                                </td>
+                            </tr>
+                            <!-- end:_1danhmuc -->
+                            <!-- begin:_1danhmuc -->
+                            <tr>
+                                <th scope="row">2</th>
+                                <td><b>Laptop</b></td>
+                                <td>
+                                    <span class="sua"><i class="fas fa-pen"></i></span>
+                                    <span class="xoa"><i class="fas fa-trash"></i></span>
+                                </td>
+                            </tr>
+                            <!-- end:_1danhmuc -->
+                            <!-- begin:_1danhmuc -->
+                            <tr>
+                                <th scope="row">3</th>
+                                <td><b>PC</b></td>
+                                <td>
+                                    <span class="sua"><i class="fas fa-pen"></i></span>
+                                    <span class="xoa"><i class="fas fa-trash"></i></span>
+                                </td>
+                            </tr>
+                            <!-- end:_1danhmuc -->
+                            <!-- begin:_1danhmuc -->
+                            <tr>
+                                <th scope="row">4</th>
+                                <td><b>Máy tính bảng</b></td>
+                                <td>
+                                    <span class="sua"><i class="fas fa-pen"></i></span>
+                                    <span class="xoa"><i class="fas fa-trash"></i></span>
+                                </td>
+                            </tr>
+                            <!-- end:_1danhmuc -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="col-6">
@@ -48,7 +77,7 @@
                     <form action="post">
                         <div class="form-group">
                             <label for="tendanhmuc">Tên danh mục</label>
-                            <input type="text" name="" id="tendanhmuc" class="form-control" placeholder="Tên danh mục">
+                            <input type="text" v-model="tendanhmuc" id="tendanhmuc" class="form-control" placeholder="Tên danh mục">
                             <small id="tendanhmuc" class="text-muted">Help text</small>
                         </div>
                         <button class="btn btn-success btn-block" @click.prevent="themDanhMuc">Thêm danh mục</button>
@@ -63,12 +92,26 @@
 export default {
     data() {
         return {
+            tendanhmuc: '',
 
         };
     },
+    // hàm khởi chạy lúc component vừa load xong
+    created() {
+        // kiểm tra xem người dùng đã đăng nhập chưa
+
+    },
     methods: {
         themDanhMuc() {
-            alert('Thêm danh mục');
+            alert(this.tendanhmuc);
+
+            axios.post('/api/shop/danhmuc/them-danh-muc/', {tendanhmuc: this.tendanhmuc})
+            .then(response => {
+                console.log(response.data.result);
+            })
+            .catch(error => {
+                console.log(error);
+            })
         }
     }
 }
@@ -85,7 +128,6 @@ export default {
         }
         .row {
             .col-6 {
-                // border: 1px solid gray;
                 .khoitieude {
                     margin-top: 10px;
                     .tieude {
@@ -99,9 +141,12 @@ export default {
                         margin-right: 20px;
                         color: black;
                     }
+                    span {
+                        margin-right: 10px;
+                        cursor: pointer;
+                    }
                     .sua {
                         color: blue;
-                        margin-right: 10px;
                     }
                     .xoa {
                         color: red;

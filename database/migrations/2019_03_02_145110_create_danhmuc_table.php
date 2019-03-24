@@ -16,8 +16,8 @@ class CreateDanhmucTable extends Migration
         Schema::create('danhmuc', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('tendanhmuc', 255);
-            $table->char('hinhminhoa', 255);
-            $table->text('mota');
+            $table->char('hinhminhhoa', 255);
+            $table->integer('shop_id');
             $table->timestamps();
         });
     }

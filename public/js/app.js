@@ -1909,7 +1909,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       this.$session.clear();
-      this.$router.push('/'); // this.$router.reload();
+      this.$router.push('/');
+      location.reload();
     }
   }
 });
@@ -2447,7 +2448,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   /**
    * kiểm tra xem người dùng đã đăng nhập hay chưa
@@ -2550,13 +2550,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      tendanhmuc: ''
+    };
+  },
+  // hàm khởi chạy lúc component vừa load xong
+  created: function created() {// kiểm tra xem người dùng đã đăng nhập chưa
   },
   methods: {
     themDanhMuc: function themDanhMuc() {
-      alert('Thêm danh mục');
+      alert(this.tendanhmuc);
+      axios.post('/api/shop/danhmuc/them-danh-muc/', {
+        tendanhmuc: this.tendanhmuc
+      }).then(function (response) {
+        console.log(response.data.result);
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -8092,7 +8133,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".content ul[data-v-39242490] {\n  padding-left: 30px;\n}", ""]);
+exports.push([module.i, ".content ul[data-v-39242490] {\n  padding-left: 30px;\n  list-style-type: none;\n}\n.content ul li[data-v-39242490] {\n  color: gray;\n}\n.content ul li .icons[data-v-39242490] {\n  margin-right: 10px;\n}\n.content ul li .router-link[data-v-39242490] {\n  color: #14296b;\n  text-decoration: none;\n}\n.content ul li .router-link[data-v-39242490]:hover {\n  font-weight: bold;\n}", ""]);
 
 // exports
 
@@ -8111,7 +8152,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".content .tieudelon[data-v-16b0cead] {\n  border-left: 7px solid gray;\n  padding-left: 10px;\n  font-size: 28px;\n  font-weight: bold;\n  color: gray;\n}\n.content .row .col-6 .khoitieude[data-v-16b0cead] {\n  margin-top: 10px;\n}\n.content .row .col-6 .khoitieude .tieude[data-v-16b0cead] {\n  border-left: 5px solid #ee35ee;\n  padding-left: 7px;\n  margin-bottom: -8px;\n}\n.content .row .col-6 .khoinoidung .tendanhmuc[data-v-16b0cead] {\n  margin-right: 20px;\n  color: black;\n}\n.content .row .col-6 .khoinoidung .sua[data-v-16b0cead] {\n  color: blue;\n  margin-right: 10px;\n}\n.content .row .col-6 .khoinoidung .xoa[data-v-16b0cead] {\n  color: red;\n}", ""]);
+exports.push([module.i, ".content .tieudelon[data-v-16b0cead] {\n  border-left: 7px solid gray;\n  padding-left: 10px;\n  font-size: 28px;\n  font-weight: bold;\n  color: gray;\n}\n.content .row .col-6 .khoitieude[data-v-16b0cead] {\n  margin-top: 10px;\n}\n.content .row .col-6 .khoitieude .tieude[data-v-16b0cead] {\n  border-left: 5px solid #ee35ee;\n  padding-left: 7px;\n  margin-bottom: -8px;\n}\n.content .row .col-6 .khoinoidung .tendanhmuc[data-v-16b0cead] {\n  margin-right: 20px;\n  color: black;\n}\n.content .row .col-6 .khoinoidung span[data-v-16b0cead] {\n  margin-right: 10px;\n  cursor: pointer;\n}\n.content .row .col-6 .khoinoidung .sua[data-v-16b0cead] {\n  color: blue;\n}\n.content .row .col-6 .khoinoidung .xoa[data-v-16b0cead] {\n  color: red;\n}", ""]);
 
 // exports
 
@@ -41043,9 +41084,15 @@ var render = function() {
               "li",
               { staticClass: "list-group-item" },
               [
-                _c("router-link", { attrs: { to: { name: "tongquan" } } }, [
-                  _vm._v("Tổng quan")
-                ])
+                _c("i", { staticClass: "icons fas fa-bell" }),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "router-link",
+                    attrs: { to: { name: "tongquan" } }
+                  },
+                  [_vm._v("Tổng quan")]
+                )
               ],
               1
             ),
@@ -41054,9 +41101,13 @@ var render = function() {
               "li",
               { staticClass: "list-group-item" },
               [
+                _c("i", { staticClass: "icons fas fa-bars" }),
                 _c(
                   "router-link",
-                  { attrs: { to: { name: "danhsachsanpham" } } },
+                  {
+                    staticClass: "router-link",
+                    attrs: { to: { name: "danhsachsanpham" } }
+                  },
                   [_vm._v("Danh sách sản phẩm")]
                 )
               ],
@@ -41067,16 +41118,88 @@ var render = function() {
               "li",
               { staticClass: "list-group-item" },
               [
-                _c("router-link", { attrs: { to: { name: "danhmuc" } } }, [
-                  _vm._v("Quản lý danh mục")
-                ])
+                _c("i", { staticClass: "icons fas fa-bookmark" }),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "router-link",
+                    attrs: { to: { name: "danhmuc" } }
+                  },
+                  [_vm._v("Quản lý danh mục")]
+                )
               ],
               1
             ),
             _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("li", { staticClass: "list-group-item" }, [_vm._v("Đơn mua")])
+            _c("li", { staticClass: "list-group-item" }, [
+              _c("i", { staticClass: "icons fas fa-shopping-cart" }),
+              _vm._v(" Đơn mua\n                        "),
+              _c("ul", [
+                _c(
+                  "li",
+                  [
+                    _c("i", { staticClass: "icons fas fa-question" }),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "router-link",
+                        attrs: { to: { name: "" } }
+                      },
+                      [_vm._v("Chưa xác nhận")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c("i", { staticClass: "icons far fa-clipboard" }),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "router-link",
+                        attrs: { to: { name: "" } }
+                      },
+                      [_vm._v("Đang xử lý")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c("i", { staticClass: "icons far fa-clock" }),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "router-link",
+                        attrs: { to: { name: "" } }
+                      },
+                      [_vm._v("Vận chuyển")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c("i", { staticClass: "icons fas fa-check" }),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "router-link",
+                        attrs: { to: { name: "" } }
+                      },
+                      [_vm._v("Hoàn thành")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -41085,25 +41208,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-group-item" }, [
-      _vm._v(" Đơn mua\n                        "),
-      _c("ul", [
-        _c("li", [_vm._v("Chưa xác nhận")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("Đang xử lý")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("Đang vận chuyển")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("Hoàn thành")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41136,7 +41241,43 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "khoinoidung" }, [
           _c("form", { attrs: { action: "post" } }, [
-            _vm._m(3),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "tendanhmuc" } }, [
+                _vm._v("Tên danh mục")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tendanhmuc,
+                    expression: "tendanhmuc"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "tendanhmuc",
+                  placeholder: "Tên danh mục"
+                },
+                domProps: { value: _vm.tendanhmuc },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.tendanhmuc = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                { staticClass: "text-muted", attrs: { id: "tendanhmuc" } },
+                [_vm._v("Help text")]
+              )
+            ]),
             _vm._v(" "),
             _c(
               "button",
@@ -41182,54 +41323,80 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "khoinoidung" }, [
-        _c("ul", { staticClass: "list-group list-group-flush" }, [
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", { staticClass: "tendanhmuc" }, [_vm._v("Điện thoại")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "sua" }, [
-              _c("i", { staticClass: "fas fa-pen" })
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "xoa" }, [
-              _c("i", { staticClass: "fas fa-trash" })
+        _c("table", { staticClass: "table table-striped" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("ID")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Tên danh mục")]),
+              _vm._v(" "),
+              _c("th", { attrs: { scope: "col" } }, [_vm._v("Chức năng")])
             ])
           ]),
           _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", { staticClass: "tendanhmuc" }, [
-              _vm._v("Máy tính bảng")
+          _c("tbody", [
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+              _vm._v(" "),
+              _c("td", [_c("b", [_vm._v("Điện thoại")])]),
+              _vm._v(" "),
+              _c("td", [
+                _c("span", { staticClass: "sua" }, [
+                  _c("i", { staticClass: "fas fa-pen" })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "xoa" }, [
+                  _c("i", { staticClass: "fas fa-trash" })
+                ])
+              ])
             ]),
             _vm._v(" "),
-            _c("span", { staticClass: "sua" }, [
-              _c("i", { staticClass: "fas fa-pen" })
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
+              _vm._v(" "),
+              _c("td", [_c("b", [_vm._v("Laptop")])]),
+              _vm._v(" "),
+              _c("td", [
+                _c("span", { staticClass: "sua" }, [
+                  _c("i", { staticClass: "fas fa-pen" })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "xoa" }, [
+                  _c("i", { staticClass: "fas fa-trash" })
+                ])
+              ])
             ]),
             _vm._v(" "),
-            _c("span", { staticClass: "xoa" }, [
-              _c("i", { staticClass: "fas fa-trash" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", { staticClass: "tendanhmuc" }, [_vm._v("PC")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "sua" }, [
-              _c("i", { staticClass: "fas fa-pen" })
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
+              _vm._v(" "),
+              _c("td", [_c("b", [_vm._v("PC")])]),
+              _vm._v(" "),
+              _c("td", [
+                _c("span", { staticClass: "sua" }, [
+                  _c("i", { staticClass: "fas fa-pen" })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "xoa" }, [
+                  _c("i", { staticClass: "fas fa-trash" })
+                ])
+              ])
             ]),
             _vm._v(" "),
-            _c("span", { staticClass: "xoa" }, [
-              _c("i", { staticClass: "fas fa-trash" })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-group-item" }, [
-            _c("span", { staticClass: "tendanhmuc" }, [_vm._v("Laptop")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "sua" }, [
-              _c("i", { staticClass: "fas fa-pen" })
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "xoa" }, [
-              _c("i", { staticClass: "fas fa-trash" })
+            _c("tr", [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v("4")]),
+              _vm._v(" "),
+              _c("td", [_c("b", [_vm._v("Máy tính bảng")])]),
+              _vm._v(" "),
+              _c("td", [
+                _c("span", { staticClass: "sua" }, [
+                  _c("i", { staticClass: "fas fa-pen" })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "xoa" }, [
+                  _c("i", { staticClass: "fas fa-trash" })
+                ])
+              ])
             ])
           ])
         ])
@@ -41244,28 +41411,6 @@ var staticRenderFns = [
       _c("h5", { staticClass: "tieude" }, [_vm._v("Thêm danh mục")]),
       _vm._v(" "),
       _c("hr")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "tendanhmuc" } }, [_vm._v("Tên danh mục")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          name: "",
-          id: "tendanhmuc",
-          placeholder: "Tên danh mục"
-        }
-      }),
-      _vm._v(" "),
-      _c("small", { staticClass: "text-muted", attrs: { id: "tendanhmuc" } }, [
-        _vm._v("Help text")
-      ])
     ])
   }
 ]
@@ -58769,10 +58914,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_session__WEBPACK_IMPORTED_MOD
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router_multi_view__WEBPACK_IMPORTED_MODULE_3__["default"]);
 
 
+ // DÀNH CHO NGƯỜI DÙNG CỎ SỞ
+// trang đăng nhập
 
+ // trang đăng ký
 
+ // trang hồ sơ người dùng
 
+ // trang thay đổi thông tin địa chỉ
 
+ // trang đổi mật khẩu
 
  // DÀNH CHO NGƯỜI BÁN
 // trang cơ sở của người bán

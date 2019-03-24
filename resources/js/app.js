@@ -16,10 +16,16 @@ import App from './views/App.vue';
 import Home from './views/Home.vue';
 import List from './views/List.vue';
 
+// DÀNH CHO NGƯỜI DÙNG CỎ SỞ
+// trang đăng nhập
 import Login from './views/nguoidung/Login.vue';
+// trang đăng ký
 import Register from './views/nguoidung/Register.vue';
+// trang hồ sơ người dùng
 import HoSo from './views/nguoidung/HoSo.vue';
+// trang thay đổi thông tin địa chỉ
 import DiaChi from './views/nguoidung/DiaChi.vue';
+// trang đổi mật khẩu
 import DoiMatKhau from './views/nguoidung/DoiMatKhau.vue';
 
 // DÀNH CHO NGƯỜI BÁN
@@ -129,7 +135,6 @@ const router = new VueRouter({
                         title: 'Kênh người bán - Quản lý danh mục'
                     }
                 },
-
             ]
         },
         {

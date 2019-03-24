@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use App\User;
 
 class UserController extends Controller
@@ -92,17 +93,24 @@ class UserController extends Controller
                 'coshop' => Auth::user()->coshop,
             ];
             // lưu session
-            // Session::put('userData', $user);
-            // Session::put('clicked_close_popup_button', true);
-            // echo Session::get('userData');
-
-
-            // trả về client thông tin người dùng
+            
+            // trả về user để lưu section
             return $user;
         } else {
             // trả về thất bại nếu sai thông tin
             return 'thatbai';
         }
+    }
+
+    // Check Login API
+    /**
+     * getCheckLogin
+     * Lấy dữ liệu của người dùng nếu đã đăng nhập, còn nếu chưa đăng nhập thì trả về 0
+     */
+    public function getCheckLogin() {
+        echo '<pre>';
+        print_r(Auth::user());
+        echo '</pre>';
     }
 
     /**
