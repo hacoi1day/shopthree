@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 // VueSession dùng để lưu Session
 Vue.use(VueSession);
 // VueRouterMultiView dùng để làm Multi View
-Vue.use(VueRouterMultiView)
+Vue.use(VueRouterMultiView);
 
 
 import App from './views/App.vue';

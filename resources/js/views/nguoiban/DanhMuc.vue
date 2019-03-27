@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content page1">
         <div class="row">
             <div class="col-12">
                 <!-- begin:tieudelon -->
@@ -97,13 +97,21 @@ export default {
         };
     },
     // hàm khởi chạy lúc component vừa load xong
+    beforeCreate() {
+        // if (this.$session.has('userData')) {
+        //     this.$router.push('/');
+        // }
+    },
     created() {
         // kiểm tra xem người dùng đã đăng nhập chưa
-
+        if(this.$session.has('userData')) {
+            // console.log(this.$session.get('userData'));
+        }
     },
     methods: {
         themDanhMuc() {
             alert(this.tendanhmuc);
+
 
             axios.post('/api/shop/danhmuc/them-danh-muc/', {tendanhmuc: this.tendanhmuc})
             .then(response => {

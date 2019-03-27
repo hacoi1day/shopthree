@@ -1,5 +1,5 @@
 <template>
-    <div class="content my-3">
+    <div class="content my-3 page">
         <div class="container">
             <div class="row">
                 <div class="col-3">
@@ -18,7 +18,9 @@
                     </ul>
                 </div>
                 <div class="col-9">
-                    <router-view></router-view>
+                    <transition name="router-anim">
+                        <router-view></router-view>
+                    </transition>
                 </div>
             </div>
         </div>
@@ -43,7 +45,6 @@ export default {
                 this.$router.push('/nguoiban/taoshop');
             }
         }
-        
     },
     // dữ liệu được sử dụng trong component
     data() {
@@ -85,6 +86,40 @@ export default {
                     font-weight: bold;
                 }
             }
+        }
+    }
+    .page1 {
+        // position: fixed;
+        width: inherit;
+        // height: 10000px;
+        // position: fixed;
+    }
+    .router-anim-enter-active {
+        animation: coming 0.5s;
+        animation-delay: 0.2s;
+        opacity: 0;
+    }
+    .router-anim-leave-active {
+        animation: going 0.5s;
+    }
+    @keyframes going {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(100px);
+            opacity: 0;
+        }
+    }
+    @keyframes coming {
+        from {
+            transform: translateY(-100px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0px);
+            opacity: 1;
         }
     }
 </style>

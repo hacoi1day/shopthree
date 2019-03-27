@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\Cookie;
 use App\User;
 
 class UserController extends Controller
@@ -92,8 +93,9 @@ class UserController extends Controller
                 'ngaysinh' => Auth::user()->ngaysinh,
                 'coshop' => Auth::user()->coshop,
             ];
-            // lưu session
-            
+            // lưu session bằng php để dùng hàng kiểm tra đăng nhập ở bên dưới
+            // Session::put('user', $user);
+            // return redirect('api/sava-data-login')->with
             // trả về user để lưu section
             return $user;
         } else {
@@ -107,10 +109,13 @@ class UserController extends Controller
      * getCheckLogin
      * Lấy dữ liệu của người dùng nếu đã đăng nhập, còn nếu chưa đăng nhập thì trả về 0
      */
-    public function getCheckLogin() {
+    public function getCheckLogin($id) {
+        $user = User::find($id);
         echo '<pre>';
-        print_r(Auth::user());
+        print_r($user);
         echo '</pre>';
+        
+        
     }
 
     /**

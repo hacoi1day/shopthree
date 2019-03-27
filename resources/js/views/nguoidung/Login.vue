@@ -87,8 +87,22 @@ export default {
     },
     methods: {
         sendLoginData() {
+            axios.post('api/save-user', {
+                email: this.user.email,
+                password: this.user.password,
+            })
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error.data);
+            })
+        }
+        /*
+        sendLoginData() {
             this.showFormLogin = false;
             this.showLoading = true;
+            // axios.defaults.withCredentials = true;
             axios.post('/api/login', {
                 email: this.user.email,
                 password: this.user.password
@@ -136,6 +150,7 @@ export default {
                 }
             })
         }
+        */
     }
 }
 </script>

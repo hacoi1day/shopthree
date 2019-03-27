@@ -17,10 +17,12 @@
 
         <!-- Content -->
         <div>
-            <router-view 
-                @showData="showData"
-                :dataUser="dataUser"
-            ></router-view>
+            <transition name="router-anim">
+                <router-view 
+                    @showData="showData"
+                    :dataUser="dataUser"
+                ></router-view>
+            </transition>
         </div>
 
         <!-- Footer -->
@@ -103,3 +105,39 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+    .page {
+        // position: fixed;
+        width: inherit;
+    }
+    .router-anim-enter-active {
+        animation: coming 0.5s;
+        animation-delay: 0.2s;
+        opacity: 0;
+    }
+    .router-anim-leave-active {
+        animation: going 0.5s;
+    }
+
+    @keyframes going {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+    }
+    @keyframes coming {
+        from {
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0px);
+            opacity: 1;
+        }
+    }
+</style>

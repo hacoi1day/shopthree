@@ -14,6 +14,7 @@ Route::post('register', [
     'as' => 'register',
     'uses' => 'UserController@postRegisterAPI'
 ]);
+
 /**
  * Route đăng nhập
  * Kiểu gửi lên POST
@@ -22,14 +23,7 @@ Route::post('login', [
     'as' => 'login',
     'uses' => 'UserController@postLoginAPI'
 ]);
-/**
- * Route kiểm tra đăng nhập
- * Kiểu gửi lên GET
- */
-Route::get('check-login', [
-    'as' => 'check-login',
-    'uses' => 'UserController@getCheckLogin'
-]);
+
 /**
  * Route đăng xuát
  * Kiểu gửi lên GET
@@ -37,7 +31,34 @@ Route::get('check-login', [
 Route::get('logout', [
     'as' => 'logout',
     'uses' => 'UserController@getLogout'
-]);
+]); 
+
+Route::group(['middleware' => ['api']], function () {
+    Route::post('save-user', function(Request $request) {
+        $email =  $request->email;
+        $password = $request->password;
+        if(Auth::attempt(['email' => $email, 'password' => $password])) {
+            echo "Đăng nhập thành công";
+        } else {
+            echo "Đăng nhập không thành công";
+        }
+    });
+    Route::get('get-user', function() {
+        echo '<pre>';
+        print_r(Auth::user());
+        echo '</pre>';
+    });
+    /**
+     * Route kiểm tra đăng nhập
+     * Kiểu gửi lên GET
+     */
+    Route::get('check-login/{id}', [
+        'as' => 'check-login',
+        'uses' => 'UserController@getCheckLogin'
+    ]);
+    
+});
+
 
 // ROUTE ADMIN
 Route::group(['prefix' => 'admin'], function () {

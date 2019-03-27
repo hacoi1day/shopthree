@@ -30,9 +30,9 @@ return [
     | to immediately expire on the browser closing, set that option.
     |
     */
-
-    'lifetime' => env('SESSION_LIFETIME', 120),
-
+    // thời gian tồn tại của sestion
+    'lifetime' => env('SESSION_LIFETIME', 180),
+    // biến mất khi tắt trình duyệt
     'expire_on_close' => false,
 
     /*

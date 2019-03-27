@@ -1,8 +1,7 @@
 <template>
-    <div>
+    <div class="page">
         <!-- Slide -->
         <Slide></Slide>
-
         <!-- begin:content -->
         <div class="content">
             <!-- begin:spmoi -->
